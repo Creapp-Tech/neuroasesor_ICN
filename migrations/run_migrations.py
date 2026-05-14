@@ -3,7 +3,14 @@ import psycopg2
 from pathlib import Path
 
 def run_migrations():
-    conn = psycopg2.connect(os.environ["DATABASE_URL"])
+    db_url = os.environ["DATABASE_URL"]
+    
+    # psycopg2 no acepta prefijos de SQLAlchemy
+    db_url = db_url.replace("postgresql+asyncpg://", "postgresql://")
+    db_url = db_url.replace("postgres+asyncpg://", "postgresql://")
+    db_url = db_url.replace("postgres://", "postgresql://")
+
+    conn = psycopg2.connect(db_url)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -19,14 +26,14 @@ def run_migrations():
     for sql_file in sql_files:
         cursor.execute("SELECT 1 FROM _migrations WHERE filename = %s", (sql_file.name,))
         if cursor.fetchone():
-            print(f" Skipping {sql_file.name} (already applied)")
+            print(f"⏭️  Skipping {sql_file.name} (already applied)")
             continue
 
         print(f"Running: {sql_file.name}")
         cursor.execute(sql_file.read_text())
         cursor.execute("INSERT INTO _migrations (filename) VALUES (%s)", (sql_file.name,))
         conn.commit()
-        print(f" {sql_file.name} done")
+        print(f"✅ {sql_file.name} done")
 
     cursor.close()
     conn.close()
