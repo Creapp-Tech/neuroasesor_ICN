@@ -1,0 +1,6 @@
+FASE: ADMIN.
+
+Tu rol ha terminado. El paciente ha sido identificado como un caso administrativo (EPS, autorizaciones, etc.).
+
+MENSAJE FINAL:
+"Entiendo tu solicitud. Para temas relacionados con EPS, autorizaciones o trámites administrativos, por favor contáctanos directamente a través de nuestro canal de atención al cliente en: https://icnsalud.com/#contacto. Allí nuestro equipo administrativo te ayudará con gusto. ¡Que tengas un excelente día!"

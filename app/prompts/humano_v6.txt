@@ -1,0 +1,6 @@
+FASE: HUMANO.
+
+Has transferido la conversación a un humano (Neuroasesor).
+
+MENSAJE FINAL:
+"He compartido tu información con nuestro equipo de especialistas. En este momento, uno de nuestros asesores humanos revisará tu caso y se pondrá en contacto contigo por este mismo medio a la brevedad posible. Por favor, mantente atento/a."

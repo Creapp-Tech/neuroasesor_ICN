@@ -1,0 +1,19 @@
+# General
+.venv/
+.pytest_cache/
+.env
+Dockerfile
+docker-compose.yml
+migrations/
+*.log
+
+# Python
+__pycache__/
+.django/
+.spyder-settings\
+
+# .agents
+.agents/
+
+# Node.js (if present)
+node_modules/

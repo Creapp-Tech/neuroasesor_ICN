@@ -1,0 +1,53 @@
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text
+from sqlalchemy.sql import func
+from ..database import Base
+
+class Patient(Base):
+    __tablename__ = "pacientes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    paciente_id = Column(String(30), unique=True, nullable=False)
+    telefono = Column(String(20), unique=True, nullable=False)
+    nombre = Column(String(100))
+    edad = Column(Integer)
+    ciudad = Column(String(100))
+    aseguramiento = Column(String(50))
+    entidad = Column(String(100))
+    fase_actual = Column(String(10), default="F0")
+    programa_clinico = Column(String(50))
+    score_total = Column(Integer, default=0)
+    nivel_riesgo = Column(String(20))
+    fenotipo_probable = Column(String(200))
+    motivo_contacto = Column(String(100))
+    conversion = Column(String(200))
+    requiere_humano = Column(Boolean, default=False)
+    flag_alarma = Column(Boolean, default=False)
+    # --- Consentimientos y timestamps ---
+    consentimiento_datos_clinicos = Column(Boolean, default=False)
+    consentimiento_teleorientacion = Column(Boolean, default=False)
+    consentimiento_investigacion = Column(Boolean, default=False)
+    timestamp_consentimiento = Column(DateTime(timezone=True))
+    # --- Campos extra de la tabla pacientes ---
+    entidad_prepagada = Column(String(100))
+    tipo_consulta = Column(String(100))
+    problema_seleccionado = Column(Integer)
+    guia_soporte = Column(String(200))
+    cie10 = Column(String(20))
+    reporte_enviado = Column(Boolean, default=False)
+    fecha_cita = Column(DateTime(timezone=True))
+    canal_agenda = Column(String(100))
+    estado_cita = Column(String(100))
+    fecha_primera_orientacion = Column(DateTime(timezone=True))
+    fecha_ultima_orientacion = Column(DateTime(timezone=True))
+    cohorte = Column(String(100))
+    requiere_revision_medica = Column(Boolean, default=False)
+    motivo_escalamiento = Column(String(200))
+    error_json = Column(Boolean, default=False)
+    error_operativo = Column(String(200))
+    version_prompt = Column(String(50))
+    version_flujo = Column(String(10), default='v6.0')
+    historial_json = Column(Text, default='[]')
+    notas_internas = Column(Text)
+    prioridad_operativa = Column(String(20), default='general')
+    fecha_creacion = Column(DateTime(timezone=True), server_default=func.now())
+    ultima_actividad = Column(DateTime(timezone=True), onupdate=func.now())
